@@ -1,20 +1,56 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package poop10;
 
-/**
- *
- * @author darwi
- */
+import ExcepcionesPropias.DemasiadosRetirosException;
+import ExcepcionesPropias.DepositoExcesivoException;
+import ExcepcionesPropias.SaldoInsuficienteException;
+
 public class Principal {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.println("\n-creacion de excepciones-");
+        Cuenta cuenta = new Cuenta();
+        try {
+            System.out.println("\n-saldo insuficiente-");
+
+            // saldo insuficiente
+            cuenta.depositar(18000);
+            System.out.println("saldo de la cuenta " + cuenta.getSaldo());
+
+            cuenta.retirar(10000);
+
+            System.out.println("saldo de la cuenta " + cuenta.getSaldo());
+
+            cuenta.retirar(10000);
+            System.out.println("saldo de la cuenta " + cuenta.getSaldo());
+
+        } catch (SaldoInsuficienteException ex) {
+            System.out.println(ex.getMessage());
+        } catch (DepositoExcesivoException ex) {
+            System.out.println(ex.getMessage());
+        } catch (DemasiadosRetirosException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        try {
+            System.out.println("\n-deposito excesivo-");
+            // deposito excesivo
+            cuenta.depositar(21000);
+        } catch (DepositoExcesivoException ex2) {
+            System.out.println(ex2.getMessage());
+        }
+
+        try {
+            System.out.println("\n-demasiados retiros-");
+            // demasiados retiros
+            cuenta.retirar(1000);
+            cuenta.retirar(1000);
+            cuenta.retirar(1000);
+        } catch (DemasiadosRetirosException ex3) {
+            System.out.println(ex3.getMessage());
+        } catch (SaldoInsuficienteException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+    // wawa
+    // dame 2 we
 }
